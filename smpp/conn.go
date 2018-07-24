@@ -13,7 +13,8 @@ import (
 	"net"
 	"sync"
 
-	"github.com/fiorix/go-smpp/smpp/pdu"
+	"github.com/d1slike/go-smpp/smpp/pdu"
+	"time"
 )
 
 var (
@@ -55,11 +56,11 @@ type Closer interface {
 
 // Dial dials to the SMPP server and returns a Conn, or error.
 // TLS is only used if provided.
-func Dial(addr string, TLS *tls.Config) (Conn, error) {
+func Dial(addr string, timeout time.Duration, TLS *tls.Config) (Conn, error) {
 	if addr == "" {
 		addr = "localhost:2775"
 	}
-	fd, err := net.Dial("tcp", addr)
+	fd, err := net.DialTimeout("tcp", addr, timeout)
 	if err != nil {
 		return nil, err
 	}

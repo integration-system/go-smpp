@@ -7,15 +7,16 @@ package smpp
 import (
 	"testing"
 
-	"github.com/fiorix/go-smpp/smpp/pdu"
-	"github.com/fiorix/go-smpp/smpp/pdu/pdufield"
-	"github.com/fiorix/go-smpp/smpp/smpptest"
+	"github.com/d1slike/go-smpp/smpp/pdu"
+	"github.com/d1slike/go-smpp/smpp/pdu/pdufield"
+	"github.com/d1slike/go-smpp/smpp/smpptest"
+	"time"
 )
 
 func TestConn(t *testing.T) {
 	s := smpptest.NewServer()
 	defer s.Close()
-	c, err := Dial(s.Addr(), nil)
+	c, err := Dial(s.Addr(), 1*time.Second, nil)
 	if err != nil {
 		t.Fatal(err)
 	}

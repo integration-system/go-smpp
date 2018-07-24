@@ -12,8 +12,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/fiorix/go-smpp/smpp/pdu"
-	"github.com/fiorix/go-smpp/smpp/pdu/pdufield"
+	"github.com/d1slike/go-smpp/smpp/pdu"
+	"github.com/d1slike/go-smpp/smpp/pdu/pdufield"
 )
 
 // ConnStatus is an abstract interface for a connection status change.
@@ -35,7 +35,7 @@ type ConnStatusID uint8
 
 // Supported connection statuses.
 const (
-	Connected ConnStatusID = iota + 1
+	Connected        ConnStatusID = iota + 1
 	Disconnected
 	ConnectionFailed
 	BindFailed
@@ -90,6 +90,7 @@ type client struct {
 	EnquireLinkTimeout time.Duration
 	RespTimeout        time.Duration
 	BindInterval       time.Duration
+	ConnectionTimeout  time.Duration
 	WindowSize         uint
 	RateLimiter        RateLimiter
 
@@ -127,7 +128,7 @@ func (c *client) Bind() {
 	const maxdelay = 120.0
 	for !c.closed() {
 		eli := make(chan struct{})
-		conn, err := Dial(c.Addr, c.TLS)
+		conn, err := Dial(c.Addr, c.ConnectionTimeout, c.TLS)
 		if err != nil {
 			c.notify(&connStatus{
 				s:   ConnectionFailed,
