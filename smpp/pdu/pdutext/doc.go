@@ -14,5 +14,5 @@
 //
 // UCS2 is UTF-16-BE. Here be dragons.
 //
-// TODO(d1slike): Fix this.
+// TODO(dislike): Fix this.
 package pdutext

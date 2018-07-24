@@ -8,7 +8,7 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/d1slike/go-smpp/smpp/pdu/pdutext"
+	"github.com/dislike/go-smpp/smpp/pdu/pdutext"
 )
 
 func TestMapSet(t *testing.T) {

@@ -10,8 +10,8 @@ import (
 	"io"
 	"sync/atomic"
 
-	"github.com/d1slike/go-smpp/smpp/pdu/pdufield"
-	"github.com/d1slike/go-smpp/smpp/pdu/pdutlv"
+	"github.com/dislike/go-smpp/smpp/pdu/pdufield"
+	"github.com/dislike/go-smpp/smpp/pdu/pdutlv"
 )
 
 var nextSeq uint32
@@ -139,19 +139,19 @@ func Decode(r io.Reader) (Body, error) {
 	}
 	switch hdr.ID {
 	case AlertNotificationID:
-		// TODO(d1slike): Implement AlertNotification.
+		// TODO(dislike): Implement AlertNotification.
 	case BindReceiverID, BindTransceiverID, BindTransmitterID:
 		return decodeFields(newBind(hdr), b)
 	case BindReceiverRespID, BindTransceiverRespID, BindTransmitterRespID:
 		return decodeFields(newBindResp(hdr), b)
 	case CancelSMID:
-		// TODO(d1slike): Implement CancelSM.
+		// TODO(dislike): Implement CancelSM.
 	case CancelSMRespID:
-		// TODO(d1slike): Implement CancelSMResp.
+		// TODO(dislike): Implement CancelSMResp.
 	case DataSMID:
-		// TODO(d1slike): Implement DataSM.
+		// TODO(dislike): Implement DataSM.
 	case DataSMRespID:
-		// TODO(d1slike): Implement DataSMResp.
+		// TODO(dislike): Implement DataSMResp.
 	case DeliverSMID:
 		return decodeFields(newDeliverSM(hdr), b)
 	case DeliverSMRespID:
@@ -163,15 +163,15 @@ func Decode(r io.Reader) (Body, error) {
 	case GenericNACKID:
 		return decodeFields(newGenericNACK(hdr), b)
 	case OutbindID:
-		// TODO(d1slike): Implement Outbind.
+		// TODO(dislike): Implement Outbind.
 	case QuerySMID:
 		return decodeFields(newQuerySM(hdr), b)
 	case QuerySMRespID:
 		return decodeFields(newQuerySMResp(hdr), b)
 	case ReplaceSMID:
-		// TODO(d1slike): Implement ReplaceSM.
+		// TODO(dislike): Implement ReplaceSM.
 	case ReplaceSMRespID:
-		// TODO(d1slike): Implement ReplaceSMResp.
+		// TODO(dislike): Implement ReplaceSMResp.
 	case SubmitMultiID:
 		return decodeFields(newSubmitMulti(hdr), b)
 	case SubmitMultiRespID:

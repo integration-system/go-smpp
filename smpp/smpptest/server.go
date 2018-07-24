@@ -13,8 +13,8 @@ import (
 	"net"
 	"sync"
 
-	"github.com/d1slike/go-smpp/smpp/pdu"
-	"github.com/d1slike/go-smpp/smpp/pdu/pdufield"
+	"github.com/dislike/go-smpp/smpp/pdu"
+	"github.com/dislike/go-smpp/smpp/pdu/pdufield"
 )
 
 // Default settings.
