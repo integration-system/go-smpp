@@ -10,7 +10,7 @@ import (
 	"io"
 	"net"
 
-	"github.com/dislike/go-smpp/smpp/pdu"
+	"github.com/d1slike/go-smpp/smpp/pdu"
 )
 
 // Conn implements a server side connection.
