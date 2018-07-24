@@ -39,6 +39,7 @@ type Transmitter struct {
 	EnquireLinkTimeout time.Duration // Time after last EnquireLink response when connection considered down
 	RespTimeout        time.Duration // Response timeout, default 1s.
 	BindInterval       time.Duration // Binding retry interval
+	ConnectionTimeout  time.Duration //initial connection timeout
 	TLS                *tls.Config   // TLS client settings, optional.
 	RateLimiter        RateLimiter   // Rate limiter, optional.
 	WindowSize         uint
@@ -51,7 +52,7 @@ type Transmitter struct {
 	}
 
 	tx struct {
-		count int32
+		count    int32
 		sync.Mutex
 		inflight map[uint32]chan *tx
 	}
@@ -87,6 +88,7 @@ func (t *Transmitter) Bind() <-chan ConnStatus {
 		WindowSize:         t.WindowSize,
 		RateLimiter:        t.RateLimiter,
 		BindInterval:       t.BindInterval,
+		ConnectionTimeout:  t.ConnectionTimeout,
 	}
 	t.cl.client = c
 	c.init()
@@ -182,7 +184,7 @@ type ShortMessage struct {
 	Register pdufield.DeliverySetting
 
 	// Other fields, normally optional.
-	TLVFields			 pdutlv.Fields
+	TLVFields            pdutlv.Fields
 	ServiceType          string
 	SourceAddrTON        uint8
 	SourceAddrNPI        uint8

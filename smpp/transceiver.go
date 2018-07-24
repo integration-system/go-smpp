@@ -26,6 +26,7 @@ type Transceiver struct {
 	EnquireLinkTimeout time.Duration // Time after last EnquireLink response when connection considered down
 	RespTimeout        time.Duration // Response timeout, default 1s.
 	BindInterval       time.Duration // Binding retry interval
+	ConnectionTimeout  time.Duration //initial connection timeout
 	TLS                *tls.Config   // TLS client settings, optional.
 	Handler            HandlerFunc   // Receiver handler, optional.
 	RateLimiter        RateLimiter   // Rate limiter, optional.
@@ -56,6 +57,7 @@ func (t *Transceiver) Bind() <-chan ConnStatus {
 		WindowSize:         t.WindowSize,
 		RateLimiter:        t.RateLimiter,
 		BindInterval:       t.BindInterval,
+		ConnectionTimeout:  t.ConnectionTimeout,
 	}
 	t.cl.client = c
 	c.init()
