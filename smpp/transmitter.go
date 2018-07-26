@@ -538,31 +538,7 @@ func (t *Transmitter) QuerySM(src, msgid string, srcTON, srcNPI uint8) (*QueryRe
 	if ms == nil {
 		return nil, fmt.Errorf("no state available")
 	}
-	qr := &QueryResp{MsgID: msgid}
-	switch ms.Bytes()[0] {
-	case 0:
-		qr.MsgState = "SCHEDULED"
-	case 1:
-		qr.MsgState = "ENROUTE"
-	case 2:
-		qr.MsgState = "DELIVERED"
-	case 3:
-		qr.MsgState = "EXPIRED"
-	case 4:
-		qr.MsgState = "DELETED"
-	case 5:
-		qr.MsgState = "UNDELIVERABLE"
-	case 6:
-		qr.MsgState = "ACCEPTED"
-	case 7:
-		qr.MsgState = "UNKNOWN"
-	case 8:
-		qr.MsgState = "REJECTED"
-	case 9:
-		qr.MsgState = "SKIPPED"
-	default:
-		qr.MsgState = fmt.Sprintf("UNKNOWN (%d)", ms.Bytes()[0])
-	}
+	qr := &QueryResp{MsgID: msgid, MsgState: pdu.ResolveStatus(ms.Bytes()[0])}
 	if fd := f[pdufield.FinalDate]; fd != nil {
 		qr.FinalDate = fd.String()
 	}

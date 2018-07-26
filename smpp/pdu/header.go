@@ -107,6 +107,33 @@ func (s Status) Error() string {
 	return m
 }
 
+func ResolveStatus(b byte) string {
+	switch b {
+	case 0:
+		return "SCHEDULED"
+	case 1:
+		return "ENROUTE"
+	case 2:
+		return "DELIVERED"
+	case 3:
+		return "EXPIRED"
+	case 4:
+		return "DELETED"
+	case 5:
+		return "UNDELIVERABLE"
+	case 6:
+		return "ACCEPTED"
+	case 7:
+		return "UNKNOWN"
+	case 8:
+		return "REJECTED"
+	case 9:
+		return "SKIPPED"
+	default:
+		return fmt.Sprintf("UNKNOWN (%d)", b)
+	}
+}
+
 var esmeStatus = map[Status]string{
 	0x00000000: "OK",
 	0x00000001: "invalid message length",
