@@ -8,6 +8,7 @@ import (
 	"encoding/binary"
 	"io"
 	"strconv"
+	"strings"
 )
 
 // Name is the name of a PDU field.
@@ -149,6 +150,19 @@ func (sm *SM) Bytes() []byte {
 func (sm *SM) SerializeTo(w io.Writer) error {
 	_, err := w.Write(sm.Bytes())
 	return err
+}
+
+func (sm *SM) ToMap() Map {
+	s := sm.String()
+	arr := strings.Split(s, " ")
+	m := make(Map, len(arr))
+	for _, pair := range arr {
+		parts := strings.Split(pair, ":")
+		if len(parts) == 2 {
+			m[Name(parts[0])] = &Variable{Data: []byte(parts[1])}
+		}
+	}
+	return m
 }
 
 // DeliverySetting is used to configure registered delivery
