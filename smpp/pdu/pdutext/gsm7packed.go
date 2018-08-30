@@ -6,7 +6,7 @@ package pdutext
 
 import (
     "golang.org/x/text/transform"
-    "github.com/dislike/go-smpp/smpp/encoding"
+	"github.com/d1slike/go-smpp/smpp/encoding"
 )
 
 // GSM 7-bit (packed)
