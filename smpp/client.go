@@ -12,8 +12,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/d1slike/go-smpp/smpp/pdu"
-	"github.com/d1slike/go-smpp/smpp/pdu/pdufield"
+	"github.com/integration-system/go-smpp/smpp/pdu"
+	"github.com/integration-system/go-smpp/smpp/pdu/pdufield"
 )
 
 // ConnStatus is an abstract interface for a connection status change.
@@ -35,7 +35,7 @@ type ConnStatusID uint8
 
 // Supported connection statuses.
 const (
-	Connected        ConnStatusID = iota + 1
+	Connected ConnStatusID = iota + 1
 	Disconnected
 	ConnectionFailed
 	BindFailed

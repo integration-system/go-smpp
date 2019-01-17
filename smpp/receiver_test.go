@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/d1slike/go-smpp/smpp/pdu"
-	"github.com/d1slike/go-smpp/smpp/smpptest"
+	"github.com/integration-system/go-smpp/smpp/pdu"
+	"github.com/integration-system/go-smpp/smpp/smpptest"
 )
 
 func TestReceiver(t *testing.T) {

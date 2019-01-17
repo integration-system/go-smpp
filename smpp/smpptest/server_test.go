@@ -9,10 +9,10 @@ import (
 	"net"
 	"testing"
 
-	"github.com/d1slike/go-smpp/smpp/pdu"
-	"github.com/d1slike/go-smpp/smpp/pdu/pdufield"
-	"github.com/d1slike/go-smpp/smpp/pdu/pdutext"
-	"github.com/d1slike/go-smpp/smpp/pdu/pdutlv"
+	"github.com/integration-system/go-smpp/smpp/pdu"
+	"github.com/integration-system/go-smpp/smpp/pdu/pdufield"
+	"github.com/integration-system/go-smpp/smpp/pdu/pdutext"
+	"github.com/integration-system/go-smpp/smpp/pdu/pdutlv"
 )
 
 func TestServer(t *testing.T) {
@@ -75,7 +75,7 @@ func TestServer(t *testing.T) {
 		}
 	}
 	// submit_sm + tlv field
-	p = pdu.NewSubmitSM(pdutlv.Fields{ pdutlv.TagReceiptedMessageID: pdutlv.CString("xyz123") })
+	p = pdu.NewSubmitSM(pdutlv.Fields{pdutlv.TagReceiptedMessageID: pdutlv.CString("xyz123")})
 	f = p.Fields()
 	f.Set(pdufield.SourceAddr, "foobar")
 	f.Set(pdufield.DestinationAddr, "bozo")

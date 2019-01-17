@@ -15,10 +15,10 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/d1slike/go-smpp/smpp/pdu"
-	"github.com/d1slike/go-smpp/smpp/pdu/pdufield"
-	"github.com/d1slike/go-smpp/smpp/pdu/pdutext"
-	"github.com/d1slike/go-smpp/smpp/pdu/pdutlv"
+	"github.com/integration-system/go-smpp/smpp/pdu"
+	"github.com/integration-system/go-smpp/smpp/pdu/pdufield"
+	"github.com/integration-system/go-smpp/smpp/pdu/pdutext"
+	"github.com/integration-system/go-smpp/smpp/pdu/pdutlv"
 )
 
 // ErrMaxWindowSize is returned when an operation (such as Submit) violates
@@ -52,7 +52,7 @@ type Transmitter struct {
 	}
 
 	tx struct {
-		count    int32
+		count int32
 		sync.Mutex
 		inflight map[uint32]chan *tx
 	}
